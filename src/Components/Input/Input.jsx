@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Timer from "../Timer/Timer";
+import Button from "../UI/Button";
 import noVideo from "../../assets/Icons/icons8-no-video-96.png";
 import showVideo from "../../assets/Icons/icons8-video-call-90.png";
 const Input = () => {
@@ -62,9 +63,7 @@ const Input = () => {
             ></input>
           </div>
           <div>
-            <button className="text-slate-50 text-4xl border border-[#156669] bg-[#156669] px-4 py-2 rounded-lg">
-              Submit
-            </button>
+            <Button text="Start"></Button>
           </div>
         </form>
       )}
@@ -79,12 +78,7 @@ const Input = () => {
       )}
       {timerVisibility && (
         <div className="w-full flex items-center justify-center">
-          <button
-            onClick={cancelHandler}
-            className="text-slate-50 text-4xl border border-[#156669] bg-[#156669] px-4 py-2 rounded-lg"
-          >
-            Cancel
-          </button>
+          <Button text="Reset" onClick={cancelHandler}></Button>
         </div>
       )}
       <div className="w-full flex items-center justify-center">

@@ -23,8 +23,8 @@ const AsmrButton = (props) => {
   }, [play]);
 
   const style = play
-    ? "text-slate-50 text-2xl border-2 w-36 h-36 flex items-center justify-center  px-2 py-2 border-red-700 cursor-pointer"
-    : "text-slate-50 text-2xl border-2 w-36 h-36 flex items-center justify-center  px-2 py-2 border-slate-50 cursor-pointer";
+    ? "text-slate-50 text-2xl border-2 w-36 h-36 flex items-center justify-center  px-2 py-2 border-red-700 cursor-pointer  border  bg-[#156669] px-4 py-2 rounded-lg"
+    : "text-slate-50 text-2xl border-2 w-36 h-36 flex items-center justify-center  px-2 py-2 border-slate-50 cursor-pointer  border  bg-[#156669] px-4 py-2 rounded-lg";
   return (
     <div className="w-36">
       <audio ref={audioRef} loop={true}>
@@ -33,7 +33,7 @@ const AsmrButton = (props) => {
           Your browser does not support the audio element.
         </p>
       </audio>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         <div onClick={handlePlay} className={style}>
           {props.sound.text}
         </div>

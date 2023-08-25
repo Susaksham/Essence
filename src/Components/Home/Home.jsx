@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 // import github from "../../public/github.svg";
 // import linkedin from "../../public/linkedin.svg";
@@ -8,8 +9,8 @@ import leftImg from "../../assets/Icons/left-img.png";
 import logo from "../../assets/Icons/logo.png";
 import classes from "./Home.module.css";
 import { IoMdCheckmarkCircleOutline } from "react-icons/all";
-
-const Home = () => {
+import Button from "../UI/Button";
+const Home = ({ showAuthHandler }) => {
   return (
     <div className={classes.container}>
       <div className="logo flex flex-col items-center justify-center pt-[0rem]">
@@ -17,6 +18,9 @@ const Home = () => {
         <h1 className="logo-txt text-[#156669] font-[Righteous]  text-[2rem]">
           ESSENCE
         </h1>
+      </div>
+      <div>
+        <Button text="SignUp" onClick={showAuthHandler}></Button>
       </div>
       <div className="hero-content flex justify-around mx-[13rem]">
         <div className="left mt-[0rem]">

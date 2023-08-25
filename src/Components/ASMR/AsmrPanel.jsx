@@ -7,6 +7,7 @@ import publicPlace from "../../assets/Sounds/public-place-white-noise.mp3";
 
 import AsmrButton from "./AsmrButton";
 import { useState } from "react";
+import Arrow from "../../assets/Icons/arrow";
 
 const sounds = [
   { text: "wind", src: wind },
@@ -24,20 +25,24 @@ const AsmrPanel = () => {
       return !state;
     });
   };
-
+  const panelWidth = expand ? "w-fit" : "w-[11rem]";
   return (
-    <div className="  h-1/2   absolute top-1/2  -translate-y-1/2 right-0 ">
-      <div className="relative  h-full bg-green-300">
-        <div
-          className="text-slate-50 text-2xl absolute top-1/2 -translate-y-1/2 -left-4 cursor-pointer "
+    <div className="  h-1/2 w-fit    absolute top-1/2  -translate-y-1/2 right-0   ">
+      <div className="relative w-fit  h-full">
+        <span
+          className="text-slate-50 text-2xl absolute z-10 top-1/2 -translate-y-1/2  -translate-x-full cursor-pointer "
           onClick={expandHandler}
         >
-          {"<--"}
-        </div>
-        <div className="flex flex-col w-[24rem]  h-full   gap-4 flex-wrap items-center justify-center">
-          {sounds.map((sound, index) => {
-            return <AsmrButton key={index} sound={sound}></AsmrButton>;
-          })}
+          <Arrow rotate={expand}></Arrow>
+        </span>
+        <div
+          className={`relative transition-all duration-1000 ${panelWidth} overflow-hidden  h-full bg-[#02142000] rounded-l-3xl shadow-black shadow-2xl`}
+        >
+          <div className="flex flex-col  w-[24rem]  h-full   gap-4 flex-wrap items-center justify-center">
+            {sounds.map((sound, index) => {
+              return <AsmrButton key={index} sound={sound}></AsmrButton>;
+            })}
+          </div>
         </div>
       </div>
     </div>
