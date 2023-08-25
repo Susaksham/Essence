@@ -7,7 +7,6 @@ import publicPlace from "../../assets/Sounds/public-place-white-noise.mp3";
 
 import AsmrButton from "./AsmrButton";
 import { useState } from "react";
-import Arrow from "../../assets/Icons/arrow";
 
 const sounds = [
   { text: "wind", src: wind },
@@ -33,7 +32,7 @@ const AsmrPanel = () => {
           className="text-slate-50 text-2xl absolute z-10 top-1/2 -translate-y-1/2  -translate-x-full cursor-pointer "
           onClick={expandHandler}
         >
-          <Arrow rotate={expand}></Arrow>
+          arrow
         </span>
         <div
           className={`relative transition-all duration-1000 ${panelWidth} overflow-hidden  h-full bg-[#02142000] rounded-l-3xl shadow-black shadow-2xl`}
