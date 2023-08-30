@@ -1,4 +1,6 @@
 import "./App.css";
+import { Toaster } from "react-hot-toast";
+import AuthContextProvider from "./store/auth-context";
 import {
   Navigate,
   RouterProvider,
@@ -19,9 +21,14 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <div className="app">
-      <RouterProvider router={router}></RouterProvider>
-    </div>
+    <>
+      <AuthContextProvider>
+        <div className="app">
+          <Toaster></Toaster>
+          <RouterProvider router={router}></RouterProvider>
+        </div>
+      </AuthContextProvider>
+    </>
   );
 }
 

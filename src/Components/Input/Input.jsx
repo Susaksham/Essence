@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Timer from "../Timer/Timer";
 import Button from "../UI/Button";
 import noVideo from "../../assets/Icons/icons8-no-video-96.png";
@@ -48,25 +48,65 @@ const Input = () => {
     });
   };
 
+  const timeChangeHandler = (e) => {
+    const time = e.target.value;
+
+    if (+time >= 60) {
+      hoursRef.current.value = Math.floor(+time / 60);
+      minutesRef.current.value = +time % 60;
+    } else {
+      hoursRef.current.value = 0;
+      minutesRef.current.value = +time;
+    }
+  };
+  useEffect(() => {
+    hoursRef.current.value = 0;
+    minutesRef.current.value = 10;
+  }, []);
   return (
     <div className="flex flex-col gap-3">
-      {!timerVisibility && (
-        <form
-          className="flex flex-col items-center gap-8"
-          onSubmit={submitHandler}
-        >
-          <div className="flex gap-3">
-            <input ref={hoursRef} className="text-3xl py-4 rounded-lg"></input>
-            <input
-              ref={minutesRef}
-              className="text-3xl py-4 rounded-lg"
-            ></input>
+      <div className="flex">
+        {!timerVisibility && (
+          <form
+            className="flex flex-col items-center gap-8"
+            onSubmit={submitHandler}
+          >
+            <div className="flex gap-3">
+              <input
+                ref={hoursRef}
+                className="text-3xl py-4 rounded-lg"
+                placeholder="hours"
+              ></input>
+              <input
+                ref={minutesRef}
+                className="text-3xl py-4 rounded-lg"
+                placeholder="minutes"
+              ></input>
+            </div>
+            <div>
+              <Button text="Start"></Button>
+            </div>
+          </form>
+        )}
+        {!timerVisibility && (
+          <div className=" text-3xl ">
+            <select className="py-4 rounded-lg" onChange={timeChangeHandler}>
+              <option className="text-3xl" value="10">
+                10
+              </option>
+              <option className="text-3xl" value="20">
+                20
+              </option>
+              <option className="text-3xl" value="30">
+                30
+              </option>
+              <option className="text-3xl" value="60">
+                60
+              </option>
+            </select>
           </div>
-          <div>
-            <Button text="Start"></Button>
-          </div>
-        </form>
-      )}
+        )}
+      </div>
 
       {timerVisibility && (
         <Timer

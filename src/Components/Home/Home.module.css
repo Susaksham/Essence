@@ -9,13 +9,13 @@
 .icon-btn {
   background: white;
   margin-left: 1em;
-  position: absolute;
+  /* position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   height: 2.2em;
-  width: 2.2em;
-  border-radius: 0.7em;
+  /* width: 2.2em; */
+  /* border-radius: 0.7em; */
   right: 0.3em;
   transition: all 0.3s;
   @apply py-[3rem] w-[6rem]  rounded-[50%] mr-[1rem]  bg-[#a1dacd] absolute flex items-center justify-center;

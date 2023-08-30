@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import TensorFlow from "../TensorFlow/TensorFlow";
+import Button from "../UI/Button";
 
 const timeReducer = (state, action) => {
   if (action.type === "changed") {
@@ -20,27 +21,38 @@ const Timer = ({ hour, minute, endTimer, camra }) => {
     seconds: 0,
     totalTime: hour * 60 * 60 + minute * 60,
   });
+  const interval = useRef(null);
+  const [pause, setPause] = useState(false);
+
   const totalTimeRef = useRef(hour * 60 * 60 + minute * 60);
   const counter = () => {
     dispatch({
       type: "changed",
     });
   };
+  const pauseHandler = () => {
+    setPause((state) => {
+      return !state;
+    });
+  };
   useEffect(() => {
-    let interval = setInterval(() => {
-      totalTimeRef.current = totalTimeRef.current - 1;
-      if (totalTimeRef.current === 0) {
-        console.log(time.totalTime);
-        clearInterval(interval);
-        endTimer();
-      }
-      counter();
-    }, 1000);
-
+    if (!pause) {
+      interval.current = setInterval(() => {
+        totalTimeRef.current = totalTimeRef.current - 1;
+        if (totalTimeRef.current === 0) {
+          console.log(time.totalTime);
+          clearInterval(interval);
+          endTimer();
+        }
+        counter();
+      }, 1000);
+    } else {
+      clearInterval(interval.current);
+    }
     return () => {
-      clearInterval(interval);
+      clearInterval(interval.current);
     };
-  }, []);
+  }, [pause]);
   return (
     <div className="text-slate-50 flex items-center flex-col justify-center">
       <div className="text-6xl flex items-center justify-center">
@@ -52,7 +64,13 @@ const Timer = ({ hour, minute, endTimer, camra }) => {
           {time.seconds < 10 ? `0${time.seconds}` : `${time.seconds}`}
         </span>
       </div>
-      {camra && <TensorFlow></TensorFlow>}
+      <div>
+        <Button
+          text={pause ? "Resume" : "Pause"}
+          onClick={pauseHandler}
+        ></Button>
+      </div>
+      {camra && !pause && <TensorFlow></TensorFlow>}
     </div>
   );
 };

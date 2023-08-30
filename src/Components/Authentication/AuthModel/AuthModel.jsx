@@ -14,7 +14,7 @@ const AuthModel = ({ showAuthHandler }) => {
 
 const OverLay = ({ showAuthHandler }) => {
   return (
-    <div className="absolute top-0 left-0 w-full h-screen">
+    <div className="absolute top-0 left-0 w-full h-screen ">
       <div className="relative w-full h-screen top-0 left-0 flex items-center justify-center">
         <div
           onClick={showAuthHandler}
